@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=UnifrakturMaguntia&family=Inter:wght@300;400;500;600;700&family=Alex+Brush&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-garamond: "Cormorant Garamond", Georgia, serif;
+  --font-gothic: "UnifrakturMaguntia", serif;
+  --font-roman: "Cinzel", serif;
+  --font-roman-dec: "Cinzel Decorative", serif;
+  --font-script: "Great Vibes", cursive;
+  --font-script-fine: "Pinyon Script", cursive;
+  --font-script-brush: "Alex Brush", cursive;
+}
+
+/* Custom realistic texture styles */
+.texture-parchment {
+  background-color: #f5ebd3;
+  background-image: 
+    /* Vignette gradient representing natural edge-burning/yellowing over 37+ years */
+    radial-gradient(circle at 50% 50%, rgba(255,254,250,0.55) 0%, rgba(212,192,154,0.3) 70%, rgba(176,149,103,0.55) 100%),
+    /* Soft warm historic stains */
+    radial-gradient(circle at 15% 25%, rgba(139,90,43,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139,90,43,0.05) 0%, transparent 35%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.88 0 0 0 0 0.84 0 0 0 0 0.74 0.18 0 0 0 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23noise)' opacity='0.22'/%3E%3C/svg%3E");
+  background-blend-mode: normal, multiply, multiply, normal;
+}
+
+.texture-antique {
+  background-color: #e5d2b1;
+  background-image: 
+    /* Heavy oxidation on edges from 1989 to today (37+ years) */
+    radial-gradient(circle at 50% 50%, rgba(248,239,218,0.5) 0%, rgba(198,170,123,0.4) 60%, rgba(145,114,68,0.7) 100%),
+    /* Heavy localized coffee/humidity tea stains */
+    radial-gradient(circle at 80% 15%, rgba(118,80,38,0.12) 0%, transparent 25%),
+    radial-gradient(circle at 20% 75%, rgba(118,80,38,0.1) 0%, transparent 30%),
+    radial-gradient(circle at 50% 85%, rgba(118,80,38,0.08) 0%, transparent 20%),
+    /* Aged mold spots / paper specks */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.07' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.55 0 0 0 0 0.42 0 0 0 0 0.28 0.4 0 0 0 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23noise)' opacity='0.35'/%3E%3C/svg%3E");
+  background-blend-mode: normal, multiply, multiply, multiply, normal;
+}
+
+.texture-vellum {
+  background-color: #f6efe1;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.45) 0%, rgba(210,192,157,0.18) 100%),
+    radial-gradient(circle at 90% 10%, rgba(120,90,50,0.06) 0%, transparent 30%),
+    /* Micro fiber lines to mimic actual vellum craftsmanship */
+    linear-gradient(45deg, rgba(212,192,154,0.08) 25%, transparent 25%), 
+    linear-gradient(-45deg, rgba(212,192,154,0.08) 25%, transparent 25%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0 0.75 0.15 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.2'/%3E%3C/svg%3E");
+  background-blend-mode: normal, multiply, overlay, overlay, normal;
+}
+
+/* Realistic stamp blending */
+.stamp-blend {
+  mix-blend-mode: multiply;
+  filter: contrast(1.15) brightness(0.92) saturate(1.1);
+}
+
+/* Authentic pre-printed guilloche or ornamental border styles via CSS filters */
+.guilloche-bg {
+  background-image: radial-gradient(circle, rgba(139, 92, 26, 0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Signature animation effect */
+@keyframes draw-sig {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-sig {
+  stroke-dasharray: 200;
+  animation: draw-sig 2.5s ease-out forwards;
+}
+
+/* Hide print layout elements by default */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  body {
+    background: transparent !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page {
+    width: 297mm !important; /* A4 landscape height/width */
+    height: 210mm !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    page-break-inside: avoid;
+    float: none !important;
+  }
+  #root {
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Play And Earn Money Aap",
+  "description": "Plataforma integral de software que incluye Play & Earn Money AAP con Firebase Backend (videos, anuncios, likes, opiniones, ruleta gira y gana, rompecabezas, artesanía, ebooks y matemáticas para niños y jóvenes), Terminal de Trading Multiactivo con Bots IA, Travel Agency Rain Forest and Land, StreamPAY y Academia FullStack.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
