@@ -81,8 +81,8 @@ export const FintechExecutiveBot: React.FC<FintechExecutiveBotProps> = ({
   
   // Manager Authorization Modal State
   const [managerModalProposal, setManagerModalProposal] = useState<{ msgId: string; proposal: ProposalData } | null>(null);
-  const [managerPin, setManagerPin] = useState('7019');
-  const [managerName, setManagerName] = useState('Dra. María Teresa Jirón Bermúdez (Gerente General)');
+  const [managerPin, setManagerPin] = useState('1234');
+  const [managerName, setManagerName] = useState('Dirección General de Riesgo & Crédito (Gerencia General)');
   const [managerNotes, setManagerNotes] = useState('Aprobado de conformidad con la solvencia demostrada y capacidad de pago del cliente.');
   const [managerError, setManagerError] = useState<string | null>(null);
 
@@ -204,9 +204,9 @@ export const FintechExecutiveBot: React.FC<FintechExecutiveBotProps> = ({
     if (!managerModalProposal) return;
     const { msgId, proposal } = managerModalProposal;
 
-    const validPins = ['7019', '1234', 'admin', 'gerencia'];
+    const validPins = ['1234', 'admin', 'gerencia'];
     if (!validPins.includes(managerPin.trim().toLowerCase())) {
-      setManagerError('PIN de Gerencia inválido. Ingrese el código oficial de autorización (7019).');
+      setManagerError('PIN de Gerencia inválido. Ingrese el código oficial de autorización (1234).');
       return;
     }
 
@@ -397,10 +397,10 @@ export const FintechExecutiveBot: React.FC<FintechExecutiveBotProps> = ({
                   </label>
                   <button
                     type="button"
-                    onClick={() => setManagerPin('7019')}
+                    onClick={() => setManagerPin('1234')}
                     className="text-[10px] font-mono text-amber-400 hover:underline cursor-pointer"
                   >
-                    Usar PIN Oficial (7019)
+                    Usar PIN Oficial (1234)
                   </button>
                 </div>
                 <div className="flex items-center gap-2 bg-stone-950 border border-stone-800 rounded-xl px-3 py-2 text-xs">
@@ -412,7 +412,7 @@ export const FintechExecutiveBot: React.FC<FintechExecutiveBotProps> = ({
                       setManagerPin(e.target.value);
                       setManagerError(null);
                     }}
-                    placeholder="Ingrese PIN de Gerente (ej: 7019)"
+                    placeholder="Ingrese PIN de Gerente (ej: 1234)"
                     className="bg-transparent border-none focus:outline-none w-full text-xs font-mono text-white placeholder-stone-600"
                   />
                 </div>

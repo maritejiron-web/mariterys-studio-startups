@@ -33,9 +33,7 @@ interface FintechAcquisitionModalProps {
 
 export const FintechAcquisitionModal: React.FC<FintechAcquisitionModalProps> = ({
   isOpen,
-  onClose,
-  phone = '+506 7019-3160',
-  waLink = 'https://wa.link/ykdhlk'
+  onClose
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -43,26 +41,19 @@ export const FintechAcquisitionModal: React.FC<FintechAcquisitionModalProps> = (
 
   const salePriceUSD = '$50,000 USD';
   const salePriceCRC = '₡26,000,000 CRC';
-  const managerName = 'María Teresa Jirón Bermúdez';
-  const managerRole = 'Fundadora de Startups';
-  const managerEmail = 'maritejiron@gmail.com';
-  const cleanPhone = phone.replace(/[^0-9]/g, '');
-
-  const whatsappSaleUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-    `Hola ${managerName} (${managerRole}), estoy interesado(a) en la ADQUISICIÓN de la Startup CardPay FinTech Core Ledger & CFO A.I. por el valor de $50,000 USD (₡26,000,000 CRC). Deseo agendar una reunión ejecutiva para formalizar la compraventa y traspaso de propiedad intelectual.`
-  )}`;
+  const managerName = 'CardPay FinTech Holdings';
+  const managerRole = '100% Equity & Propiedad Intelectual';
 
   const executiveSummaryText = `🏢 MEMORÁNDUM DE VENTA DE STARTUP FINTECH
 --------------------------------------------------
 Nombre del Activo: CardPay FinTech — Core Ledger Transaccional & CFO A.I.
-Propietaria: ${managerName} (${managerRole})
-Email Oficial: ${managerEmail}
-Teléfono / WhatsApp: (506) 7019-3160
-Precio de Venta en Firme: $50,000 USD (₡26,000,000 CRC)
+Titularidad: ${managerName} (${managerRole})
+Modalidad de Entrega: White-Label (Marca Blanca 100% Lista para Producción)
+Precio de Venta en Firme: $50,000 USD (${salePriceCRC})
 
 VALOR ESTRATÉGICO & ACTIVOS INCLUIDOS:
 1. Core Ledger Bancario de Partida Doble (Double-Entry General Ledger):
-   - Cumplimiento estricto de principios contables ACID y directrices SUGEF / Basilea III.
+   - Cumplimiento estricto de principios contables ACID y directrices Basilea III.
    - Bóveda transaccional multidivisa (Colones ₡, Dólares $ y Euros €).
    - Generación de hashes criptográficos inmutables por cada asiento contable.
 
@@ -76,10 +67,8 @@ VALOR ESTRATÉGICO & ACTIVOS INCLUIDOS:
    - Despacho de Gerencia con firma digital protegida por PIN para autorizar desembolsos.
 
 4. Paquete de Traspaso:
-   - 100% de los Derechos de Propiedad Intelectual y Código Fuente.
-   - Documentación técnica, manual de despliegue y soporte de traspaso.
-
-Para negociar o agendar un Due Diligence, comunicarse a: ${phone}`;
+   - 100% de los Derechos de Propiedad Intelectual y Código Fuente en GitHub.
+   - Documentación técnica, manual de despliegue y soporte de traspaso.`;
 
   const handleCopySummary = () => {
     navigator.clipboard.writeText(executiveSummaryText);
@@ -117,7 +106,7 @@ Para negociar o agendar un Due Diligence, comunicarse a: ${phone}`;
                 OFERTA PÚBLICA DE ADQUISICIÓN
               </span>
               <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded">
-                DUE DILIGENCE LISTO
+                WHITE-LABEL • DUE DILIGENCE LISTO
               </span>
             </div>
             <h3 className="text-lg sm:text-xl font-black text-white tracking-tight mt-1">
@@ -144,22 +133,21 @@ Para negociar o agendar un Due Diligence, comunicarse a: ${phone}`;
               </span>
             </div>
             <span className="text-[11px] text-stone-400 font-mono block mt-1">
-              🏢 Propietaria: <strong className="text-stone-200">{managerName}</strong> • <span className="text-amber-400 font-bold">{managerRole}</span>
+              🏢 Activo: <strong className="text-stone-200">{managerName}</strong> • <span className="text-amber-400 font-bold">{managerRole}</span>
             </span>
-            <span className="text-[10px] text-stone-400 font-mono block">
-              ✉️ {managerEmail} • 📞 (506) 7019-3160
+            <span className="text-[10px] text-emerald-400 font-mono block">
+              ✓ Código Fuente Limpio (Marca Blanca) listo para Flippa & Acquire.com
             </span>
           </div>
 
-          <a
-            href={whatsappSaleUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={handleCopySummary}
             className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-stone-950 font-black rounded-xl font-mono text-xs uppercase tracking-wider transition shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 flex-shrink-0 cursor-pointer active:scale-95"
           >
-            <MessageCircle className="w-4 h-4 fill-current" />
-            <span>Negociar por WhatsApp</span>
-          </a>
+            {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            <span>{copied ? '¡Memorándum Copiado!' : 'Copiar Memorándum de Venta'}</span>
+          </button>
         </div>
 
         {/* ASSETS INCLUDED GRID */}
@@ -274,15 +262,14 @@ Para negociar o agendar un Due Diligence, comunicarse a: ${phone}`;
             )}
           </button>
 
-          <a
-            href={whatsappSaleUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={onClose}
             className="w-full sm:w-1/2 py-2.5 px-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-black rounded-xl font-mono text-xs uppercase tracking-wider transition shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer active:scale-98"
           >
-            <PhoneCall className="w-4 h-4 fill-current" />
-            <span>Contactar a Gerencia ({phone})</span>
-          </a>
+            <CheckCircle2 className="w-4 h-4" />
+            <span>Continuar en el Sistema</span>
+          </button>
         </div>
 
       </div>

@@ -1,9 +1,9 @@
-# 🚀 Maritery's Studio — Ecosistema de Startups & Soluciones Full-Stack
+# 🚀 CardPay FinTech Leader & Enterprise Startup Suite
 
-**Fundadora & Ingeniera de Software Full-Stack:** Dra. María Teresa Jirón Bermúdez  
-**Contacto Oficial:** Maritejiron@gmail.com | +506 7019-3160
+**Modalidad:** White-Label (Marca Blanca 100% Lista para Adquisición y Producción)  
+**Licencia:** 100% Propiedad Intelectual & Código Fuente Completo
 
-Bienvenido al repositorio oficial de **Maritery's Studio**, una suite empresarial de **6 Startups tecnológicas en producción** diseñadas con arquitectura modular desacoplada en **React 19, TypeScript, Node.js, Express, Tailwind CSS, Firebase Firestore y Google Gemini AI**.
+Bienvenido al repositorio oficial de **CardPay FinTech Leader & Startup Suite**, una plataforma empresarial en producción diseñada con arquitectura modular desacoplada en **React 19, TypeScript, Node.js, Express, Tailwind CSS, Firebase Firestore y Google Gemini AI**.
 
 ---
 

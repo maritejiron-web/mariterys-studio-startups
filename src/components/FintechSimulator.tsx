@@ -65,7 +65,7 @@ interface CustomerProfile {
   debtDetails?: string;         // Historial detallado
 }
 
-const STORAGE_KEY_REAL_CUSTOMERS = 'cardpay_fintech_real_customers_clean_v1';
+const STORAGE_KEY_REAL_CUSTOMERS = 'cardpay_fintech_whitelabel_clean_v2';
 
 const EMPTY_INITIAL_PROFILE: CustomerProfile = {
   id: 'sin-seleccion',
@@ -338,7 +338,7 @@ export default function FintechSimulator({ onBackToHub }: FintechSimulatorProps 
   const handleLookupRealPerson = async (overrideQuery?: string) => {
     const rawInput = (overrideQuery ?? (formCedula.trim() || formName.trim())).trim();
     if (!rawInput) {
-      setFormMessage('⚠️ Escribe el Nombre y Apellidos de una persona real (ej: María Teresa Jirón) o los 9 dígitos de su Cédula.');
+      setFormMessage('⚠️ Escribe el Nombre y Apellidos del titular o los 9 dígitos de su Cédula.');
       return;
     }
 
@@ -780,7 +780,7 @@ export default function FintechSimulator({ onBackToHub }: FintechSimulatorProps 
   // Open Banking API Payload Generator
   const generateMockApiPayload = () => {
     const timestamp = new Date().toISOString();
-    const cleanPhone = "50670193160";
+    const cleanPhone = selectedCustomer.cardSINPE || "";
     const bankMapping = {
       SINPE: { name: 'Banco Central de Costa Rica (SINPE)', scheme: 'SINPE-MOVIL', endpoint: '/api/v2/sinpe/disburse' },
       SEPA: { name: 'European Central Bank (SEPA Instant)', scheme: 'SEPA-INST-CREDIT', endpoint: '/api/v1/sepa/pay' },
@@ -1314,7 +1314,7 @@ export default function FintechSimulator({ onBackToHub }: FintechSimulatorProps 
                   Centro de Consulta de Crédito y SUGEF
                 </h4>
                 <p className="text-[11.5px] text-stone-400 leading-relaxed font-sans">
-                  Bienvenida <strong>María Teresa</strong>. Este módulo gestiona la conexión con los sistemas de la <strong>SUGEF (Superintendencia General de Entidades Financieras)</strong> y burós de crédito en Costa Rica. Permite realizar estudios de viabilidad financiera analizando deudas en bancos estatales e historial de morosidad.
+                  Bienvenido al <strong>Centro de Consulta Financiera</strong>. Este módulo gestiona la conexión con los sistemas de verificación tributaria, padrón civil y burós de crédito. Permite realizar estudios de viabilidad financiera analizando deudas e historial de morosidad en tiempo real.
                 </p>
               </div>
             </div>
@@ -1488,7 +1488,7 @@ export default function FintechSimulator({ onBackToHub }: FintechSimulatorProps 
                     <div className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="text"
-                        placeholder="Escribe un Nombre Real (Ej: María Teresa Jirón) o Cédula (9 dígitos)"
+                        placeholder="Escribe el Nombre Completo del Titular o Número de Cédula (9 dígitos)"
                         value={formCedula}
                         onChange={(e) => setFormCedula(e.target.value)}
                         onKeyDown={(e) => {
@@ -1509,35 +1509,8 @@ export default function FintechSimulator({ onBackToHub }: FintechSimulatorProps 
                       </button>
                     </div>
                     <p className="text-[10px] text-stone-400 leading-relaxed">
-                      Conecta en tiempo real con la base pública del <strong>Ministerio de Hacienda y Padrón TSE de Costa Rica</strong>. Si ingresas un nombre real o número de cédula, extrae la identidad oficial, número de cédula, estado tributario y verifica si registra <strong>Morosidad u Omisión oficial</strong>.
+                      Conecta en tiempo real con la base pública del <strong>Ministerio de Hacienda y Padrón TSE</strong>. Si ingresas un nombre real o número de cédula, extrae la identidad oficial, número de cédula, estado tributario y verifica si registra <strong>Morosidad u Omisión oficial</strong>.
                     </p>
-
-                    {/* BOTÓN DE PRUEBA RÁPIDA EN 1 CLIC */}
-                    <div className="flex flex-wrap items-center gap-2 pt-1">
-                      <span className="text-[9.5px] font-mono text-stone-400 font-bold">Prueba rápida en 1 clic:</span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setFormCedula('María Teresa Jirón Bermúdez');
-                          handleLookupRealPerson('María Teresa Jirón Bermúdez');
-                        }}
-                        disabled={isConsultingCedula}
-                        className="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 text-[10px] font-mono font-bold cursor-pointer transition"
-                      >
-                        ⚡ Probar con mi nombre: María Teresa Jirón Bermúdez
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setFormCedula('602400554');
-                          handleLookupRealPerson('602400554');
-                        }}
-                        disabled={isConsultingCedula}
-                        className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-[10px] font-mono font-bold cursor-pointer transition"
-                      >
-                        ⚡ Probar por Cédula: 602400554
-                      </button>
-                    </div>
 
                     {/* LISTA DE COINCIDENCIAS REALES CUANDO SE BUSCA POR NOMBRE */}
                     {haciendaMatches.length > 1 && (
@@ -1577,7 +1550,7 @@ export default function FintechSimulator({ onBackToHub }: FintechSimulatorProps 
                           <input
                             type="text"
                             required
-                            placeholder="Ej: María Teresa Jirón Bermúdez"
+                            placeholder="Ingrese Nombre y Apellidos del Titular"
                             value={formName}
                             onChange={(e) => setFormName(e.target.value)}
                             onKeyDown={(e) => {

@@ -3258,8 +3258,8 @@ ESTIMACIÓN COMERCIAL:
         </main>
         <footer className="bg-stone-950 border-t border-stone-900 py-4 px-6 text-center text-xs text-stone-500 font-mono">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span>© 2026 CardPay Fintech • Double-Entry Core Ledger & CFO A.I. • Fundadora: María Teresa Jirón Bermúdez</span>
-            <span className="text-amber-500 font-bold">En Venta: $50,000 USD (WhatsApp: 506 7019-3160)</span>
+            <span>© 2026 CardPay FinTech • Double-Entry Core Ledger, Multi-Currency Vault & CFO A.I.</span>
+            <span className="text-amber-500 font-bold">Licencia Enterprise White-Label • En Venta: $50,000 USD</span>
           </div>
         </footer>
       </div>
